@@ -1,68 +1,127 @@
 #
-# JobListings
+# AceEmployments
 # by refractored
 #
-Database:
-  # For the url, you should only need to replace DATABASE_IP , PORT, and DATABASE_NAME.
-  # jdbc:mysql://DATABASE_IP:PORT/DATABASE_NAME
-  # replace url with "file" if you want to use sqlite.
-  url: "jdbc:mysql://DATABASE_IP:PORT/DATABASE_NAME"
-  user: "USERNAME"
-  password: "PASSWORD"
 
-Orders:
-  # These two values are used if a player does not have a permission set for the max.
-  # Replace X with number
-  # Permissions:
-  # joblistings.create.max.X
-  # joblistings.accepted.max.X
-  MaxOrders: 3
-  MaxOrdersAccepted: 3
-  # Maximum/Minimum time in hours orders can be posted for
-  MaxOrdersTime: 192
-  MinOrdersTime: 48
-  # Time in hours to keep orders in the database after they have been fully completed
-  PickupDeadline: 500
-  # Deadline in hours to complete an order
-  OrderDeadline: 32
-  # Maximum amount of items per order
-  # Setting this to 0 will disable the limit
-  # Setting this to -1 will use the item's max stack size (May differ with material type)
-  MaximumItems: 256
-  # If orders can be created via hand (requires restart to change)
-  CreateHand: true
-  # If orders can be created via material (requires restart to change)
-  CreateMaterial: true
-  # If orders should be announced in chat when created
-  AnnounceOnOrderCreate: false
-  # Blocks players from creating orders with these materials Inhand, and via material.
-  BlacklistedMaterials:
-  # These materials below are blacklisted because they aren't actual stacks of items.
-  # Without this, creating an order with these materials will cause issues.
-    - FIRE
-    - LAVA
-    - WATER
-    - END_PORTAL
-    - END_GATEWAY
-    - NETHER_PORTAL
-    - AIR
-  # These materials below are blacklisted because they are admin blocks.
-  # If you want you can remove this.
-    - BEDROCK
-    - BARRIER
-    - LIGHT
-    - END_PORTAL_FRAME
-    - STRUCTURE_BLOCK
-    - COMMAND_BLOCK
-    - STRUCTURE_VOID
-    - JIGSAW
-  # Creating an order via material will not have any data. (/joblistings create material)
-  # By default spawners and enchantment books are blocked, because they will be all be pig spawners, or blank books if not created via hand.
-  # This can be disabled if you don't mind it.
-  # This includes everything from BlacklistedMaterials too, so don't add them here if its already there.
-  BlacklistedCreateMaterials:
-    - SPAWNER
-    - ENCHANTMENT_BOOK
+# General use settings for the plugin.
+Settings:
+  # This will assume default permissions for users. It is advised to leave this true
+  # unless you wish to limit what your users can access.
+  AssumeDefaultPermissions: true
+
+  # What worlds should players not be allowed to use the plugin
+  # Add world names to this list to block the plugin in those worlds
+  BlockedWorlds: []
+  
+  # What items should server-job-offers not include.
+  # These items will be blocked from being used in job offers
+  BlockedItems:
+    - 'BEDROCK'
+    - 'BARRIER'
+    - 'STRUCTURE_VOID'
+    - 'STRUCTURE_BLOCK'
+    - 'LIGHT'
+    - 'DEBUG_STICK'
+    - 'FIRE'
+    - 'LAVA'
+    - 'WATER'
+    - 'END_PORTAL'
+    - 'END_GATEWAY'
+    - 'NETHER_PORTAL'
+    - 'AIR'
+    - 'END_PORTAL_FRAME'
+    - 'COMMAND_BLOCK'
+    - 'JIGSAW'
+    - 'SPAWNER'
+    - 'ENCHANTED_BOOK'
+
+#============================================================================================================ 
+
+# The amount of job offers a player can create based on permissions
+# Using the permission "aceemployments.offers.*" will give unlimited offer slots.
+CreatePermissions:
+  # The default amount of jobs a player can create, regardless of permission.
+  # Set to 0 and create new permissions if you wish for default to have none.
+  default: 3
+  
+  # Your custom permissions and amounts.
+  # You can create as many as you want here.
+  # The plugin will ALWAYS use the highest amount - these are not additive.
+  custom:
+    # This would give anyone with the permission "aceemployments.offers.example-rank-a" 10 job-offer slots.
+    example-rank-a:
+      amount: 10
+
+#============================================================================================================ 
+
+# Configuration to do with player-job-offers
+# These are created by players for other players to fulfill them.
+PlayerJobOffers:
+  # How much it should cost a player to create a Job Offer.
+  # Use '0' for it to be free.
+  CreationAmount: 0
+
+  # How long should job offers last for before expiring? (in seconds) - 7 days by default.
+  # This only applies to player-job-offers, see below for server-job offers.
+  # 604800 seconds = 7 days
+  OfferExpireTime: 604800
+  
+  # Should new job offers be broadcasted in chat?
+  BroadcastOnCreate:
+    # If this should be enabled
+    Enabled: true
+   
+    # What message should be sent in chat?
+    # Variables = %player%, %item%, %amount%, %price%, %price-per-item%
+    Message:
+      - '<green>A new job offer by <gray>%player%</gray> has been created!'
+      - '<green>Item: <white>%item%</white> x <white>%amount%</white>'
+      - '<green>Payment: <gold>$%price%</gold> (<gold>$%price-per-item%</gold> per item)'
+
+#============================================================================================================ 
+
+# Configuration to do with server-job-offers. 
+# These are custom generated offers that players can complete for money or command rewards.
+ServerJobOffers:
+  # Should this feature be enabled?
+  Enabled: true
+
+  # Should this feature require a permission to access?
+  # Leave blank for no-permission.
+  AccessPermission: ''
+  
+  # Settings to do with job creation.
+  JobCreation:
+    # How many jobs should be randomly created?
+    Amount: 7
+    
+    # How long should these offers last for? (in seconds) - 1 day by default.
+    # 86400 seconds = 1 day
+    OfferExpireTime: 86400
+    
+    # How often should new jobs be created? (in seconds) - 12 hours by default.
+    # 43200 seconds = 12 hours
+    CreationTime: 43200
+    
+  # Settings to do with what items jobs can request.
+  JobSettings:
+    # How many items can a specific job ask for - based on creative categories.
+    Amounts:
+      BREWING: 1-10
+      BUILDING_BLOCKS: 1-10
+      COMBAT: 1-10
+      DECORATIONS: 1-10
+      FOOD: 1-10
+      MISC: 1-10
+      REDSTONE: 1-10
+      TOOLS: 1-10
+      TRANSPORTATION: 1-10
+      
+      # If you are running a version lower then 1.20, or it cannot find a category.
+      default: 5-10
+      
+    # The rewards for completing one of these job offers.
+    # This will be configured in future updates
 
 # Mail is used when an order is updated and the player is offline
 Mail:
@@ -90,3 +149,28 @@ Essentials:
   # will not be able to accept orders from the player that ignored them.
   UseIgnoreList: false
 
+# Auto deletion of jobs after a certain time
+Orders:
+  # Maximum time in hours a job can exist before auto-deletion
+  # Set to 0 to disable auto-deletion
+  AutoDeleteMaxTime: 0
+  # Maximum/Minimum time in hours orders can be posted for
+  MaxOrdersTime: 192
+  MinOrdersTime: 48
+  # Time in hours to keep orders in the database after they have been fully completed
+  PickupDeadline: 500
+  # Deadline in hours to complete an order
+  OrderDeadline: 32
+  # Maximum amount of items per order
+  # Setting this to 0 will disable the limit
+  # Setting this to -1 will use the item's max stack size (May differ with material type)
+  MaximumItems: 9999
+  # Maximum number of orders a player can accept/claim at once
+  MaxOrdersAccepted: 3
+
+# Discord Webhooks (Optional)
+Discord:
+  # Enable/Disable Discord webhooks
+  Enabled: false
+  # Discord webhook URL
+  WebhookURL: ""

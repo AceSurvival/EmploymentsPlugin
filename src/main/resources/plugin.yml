@@ -1,9 +1,9 @@
-name: JobListings
+name: AceEmployments
 version: '${version}'
-main: net.refractored.joblistings.JobListings
-api-version: '1.19'
+main: net.refractored.aceemployments.AceEmployments
+api-version: '1.21'
 authors: [refractored]
-description: "Players can create orders for items in minecraft."
+description: "Players can create employment listings for items in minecraft."
 database: true
 depend: [Vault]
 softdepend:
@@ -16,49 +16,35 @@ libraries:
   - org.jetbrains.kotlin:kotlin-stdlib:2.0.0
   - com.j256.ormlite:ormlite-core:5.6
   - com.j256.ormlite:ormlite-jdbc:5.6
+commands:
+  employ:
+    description: "Main command for AceEmployments"
+    aliases: [emp, employments]
 permissions:
-  joblistings.view.owned:
-    description: "View all the player made."
+  aceemployments.create:
+    description: "Create new employment listings."
     default: true
-  joblistings.view.owned.other:
-    description: "Open the owned orders GUI for other players."
-    default: op
-  joblistings.view.claimed:
-    description: "View all the orders the player has claimed."
+  aceemployments.browse:
+    description: "Browse available employment listings."
     default: true
-  joblistings.view.claimed.other:
-    description: "Open the claimed orders GUI for other players."
-    default: op
-  joblistings.view.orders:
-    description: "View all pending orders."
+  aceemployments.myjobs:
+    description: "View your own employment listings."
     default: true
-  joblistings.view.orders.other:
-    description: "Open the orders GUI for other players."
-    default: op
-  joblistings.completeorders:
-    description: "Lets the player complete orders."
+  aceemployments.contribute:
+    description: "Contribute items to job listings."
     default: true
-  joblistings.create.hand:
-    description: "Lets the player create orders with the item in their hand."
+  aceemployments.subscribe:
+    description: "Subscribe to item notifications."
     default: true
-  joblistings.create.material:
-    description: "Lets the player create orders with a material."
+  aceemployments.notifier:
+    description: "Set notification preferences."
     default: true
-  joblistings.admin.reload:
-    description: "Lets the player reload the plugin."
+  aceemployments.container:
+    description: "Access your item container."
+    default: true
+  aceemployments.admin.reload:
+    description: "Reload the plugin configuration."
     default: op
-  joblistings.admin.create.preset:
-    description: "Lets the player create a preset."
-    default: op
-  joblistings.admin.remove.preset:
-    description: "Lets the player delete a preset."
-    default: op
-  joblistings.admin.info.preset:
-    description: "Lets the player view a copy of the preset in chat."
-    default: op
-  joblistings.admin.get.preset:
-    description: "Lets the player view a copy of the preset in chat."
-    default: op
-  joblistings.admin.import:
-    description: "Lets the player import items from a custom item plugin."
+  aceemployments.admin.delist:
+    description: "Cancel all listings for a player."
     default: op

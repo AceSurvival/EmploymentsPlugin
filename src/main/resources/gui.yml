@@ -1,12 +1,12 @@
 #
-# JobListings
+# AceEmployments
 # by refractored
 #
 AllOrders:
   # %0 = Current Page
   # %1 = Max Pages
-  Title: "<gradient:#7ECD71:#4CB13B><bold>All Orders</gradient> <#3e403f>(Page %0/%1)"
-  Rows: 5
+  Title: "<gradient:#7ECD71:#4CB13B><bold>Jobs List</gradient> <#3e403f>(Page %0/%1)"
+  Rows: 6
   # Orderslots is the slots the plugin will attempt to load an order.
   # If there aren't enough orders to fill up each slot, it will use the FallbackItem to fill in the rest.
   # To customize the lore, use messages.yml
@@ -32,6 +32,13 @@ AllOrders:
     - 32
     - 33
     - 34
+    - 37
+    - 38
+    - 39
+    - 40
+    - 41
+    - 42
+    - 43
   # The item to show if an order could not be loaded.
   # (Orders usually cannot be loaded when an order does NOT exist for that slot)
   FallbackItem:
@@ -44,53 +51,84 @@ AllOrders:
       - ""
   NextPage:
     Name: "<gray>Next Page"
-    Material: "ARROW"
+    Material: "DISPENSER"
     Amount: 1
     ModelData: 0
     Lore:
       - ""
     Slots:
-      - 44
+      - 50
   PreviousPage:
     Name: "<gray>Previous Page"
-    Material: "ARROW"
+    Material: "DISPENSER"
     Amount: 1
     ModelData: 0
     Lore:
       - ""
     Slots:
-      - 36
+      - 51
   Items:
-    GlassPane:
+    YellowGreenPane:
       Name: " "
-      Material: "GREEN_STAINED_GLASS_PANE"
+      Material: "LIME_STAINED_GLASS_PANE"
       Amount: 1
       ModelData: 0
       Lore:
         - ""
       Slots:
         - 0
-        - 1
-        - 2
-        - 3
-        - 4
-        - 5
-        - 6
-        - 7
         - 8
+        - 45
+        - 53
+    OrangeBrownPane:
+      Name: " "
+      Material: "ORANGE_STAINED_GLASS_PANE"
+      Amount: 1
+      ModelData: 0
+      Lore:
+        - ""
+      Slots:
+        - 1
+        - 7
         - 9
         - 17
-        - 18
-        - 26
-        - 27
-        - 35
-        - 37
-        - 38
-        - 39
-        - 40
-        - 41
-        - 42
-        - 43
+        - 36
+        - 44
+        - 46
+        - 48
+        - 52
+    InfoBook:
+      Name: "<green>Information"
+      Material: "KNOWLEDGE_BOOK"
+      Amount: 1
+      ModelData: 0
+      Lore:
+        - "<gray>Below are various offers created by the"
+        - "<gray>server, or by other players."
+        - "<gray>Contribute items to them to earn money."
+        - ""
+        - "<gray>Create a new offer with:"
+        - "<green>/employ create <item> <amount> <payment>"
+      Slots:
+        - 4
+    CloseButton:
+      Name: "<red>Close"
+      Material: "ARROW"
+      Amount: 1
+      ModelData: 0
+      Lore:
+        - "<gray>Click to close this menu"
+      Slots:
+        - 49
+    MyOffersButton:
+      Name: "<yellow>My Offers"
+      Material: "MINECART"
+      Amount: 1
+      ModelData: 0
+      Lore:
+        - "<gray>Click to view your offers"
+      Slots:
+        - 47
 ClaimedOrders:
   # %0 = Current Page
   # %1 = Max Pages
@@ -182,8 +220,8 @@ ClaimedOrders:
 MyOrders:
   # %0 = Current Page
   # %1 = Max Pages
-  Title: "<bold><gradient:#2A77EE:#045CE5>My Orders</gradient></bold> <#3e403f>(Page %0/%1)"
-  Rows: 5
+  Title: "<bold><gradient:#2A77EE:#045CE5>My Offers</gradient></bold> <#3e403f>(Page %0/%1)"
+  Rows: 6
   # Orderslots is the slots the plugin will attempt to load an order.
   # If there aren't enough orders to fill up each slot, it will use the FallbackItem to fill in the rest.
   # To customize the lore, use messages.yml
@@ -237,33 +275,41 @@ MyOrders:
     Slots:
       - 36
   Items:
-    GlassPane:
+    YellowGreenPane:
       Name: " "
-      Material: "BLUE_STAINED_GLASS_PANE"
+      Material: "LIME_STAINED_GLASS_PANE"
       Amount: 1
       ModelData: 0
       Lore:
         - ""
       Slots:
         - 0
-        - 1
-        - 2
-        - 3
-        - 4
-        - 5
-        - 6
-        - 7
         - 8
+        - 45
+        - 53
+    OrangeBrownPane:
+      Name: " "
+      Material: "ORANGE_STAINED_GLASS_PANE"
+      Amount: 1
+      ModelData: 0
+      Lore:
+        - ""
+      Slots:
+        - 1
+        - 7
         - 9
         - 17
-        - 18
-        - 26
-        - 27
-        - 35
-        - 37
-        - 38
-        - 39
-        - 40
-        - 41
-        - 42
-        - 43
+        - 36
+        - 44
+        - 46
+        - 48
+        - 52
+    CloseButton:
+      Name: "<red>Close"
+      Material: "ARROW"
+      Amount: 1
+      ModelData: 0
+      Lore:
+        - "<gray>Click to close this menu"
+      Slots:
+        - 49

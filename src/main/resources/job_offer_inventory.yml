@@ -1,0 +1,80 @@
+#==========================================================================
+#
+#  This file is used to edit the Job Offer Inventory. (for claiming items)
+#  Notes: This GUI has 54 slots. 
+#         Any empty slots will be used to sell minerals.
+#
+#==========================================================================
+#
+#  Note: Items marked with #Default do not have the ability to edit
+#        their names and lores here. Edit them in the messages.yml.
+#        You can remove default items unless it says #Mandatory
+#
+#  Tags:
+#    #Default: Default item. Edit its name and lore in the messages.yml
+#    #Mandatory: Do not remove this item/line from the file unless it will cause errors.  
+#
+#  Every item requires the 'material' and 'slot' fields. 
+#  Amount is defaulted to 1 unless specified. 
+#  Glowing is defaulted to false unless specified.
+#
+#  Possible things you can add:
+# 
+#  -  material: BLACK_STAINED_GLASS_PANE
+#  -  amount: 1
+#  -  model_data: 0
+#  -  name: 'Example Name'
+#  -  lore:
+#       - 'example lore line'
+#  -  glowing: false
+#  -  slots: [1, 2, 3, 5, 6, 7]
+#  -  commands:
+#     - [PLAYER] say Hello World!
+#     - [CONSOLE] message %player% Hello %player%!
+# 
+#  You can find an example item below that you can add. 
+# 
+#  example-item:
+#    material: LIME_STAINED_GLASS_PANE
+#    name: 'some name' #This can have a name since it is not marked as a #Default item.
+#    slots: 11
+#
+#==========================================================================
+
+items:
+
+  #Default
+  background-black:
+    material: BLACK_STAINED_GLASS_PANE
+    slots: [2, 6, 18, 27, 26, 35, 47]
+    
+  #Default
+  background-blue:
+    material: YELLOW_STAINED_GLASS_PANE
+    slots: [0, 8, 45, 53]
+    
+  #Default
+  background-light-blue:
+    material: ORANGE_STAINED_GLASS_PANE
+    slots: [1, 7, 9, 17, 36, 46, 44]
+    
+  #Default
+  background-gray:
+    material: GRAY_STAINED_GLASS_PANE
+    slots: [3, 4, 5, 48, 50]
+
+  #Default
+  back-arrow:
+    material: ARROW
+    slots: 49
+
+  #Default
+  next-page:
+    material: PLAYER_HEAD:17b03b71d3f86220ef122f9831a726eb2b283319c7b62e7dcd2d64d9682
+    slots: [52]
+    
+  #Default
+  previous-page:
+    material: PLAYER_HEAD:48348aa77f9fb2b91eef662b5c81b5ca335ddee1b905f3a8b92095d0a1f141
+    slots: [51]
+    
